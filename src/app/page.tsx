@@ -1,9 +1,17 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <Container>
-      <h1>Hello</h1>
-    </Container>
-  );
-}
+interface HomePageProps {}
+
+/**
+ * This is will be the home page of the application
+ * Right now it'll show or redirect to the login page
+ * It can be replaced with a proper landing page
+ */
+
+const HomePage = ({}: Readonly<HomePageProps>) => {
+  redirect("/dashboard");
+};
+
+HomePage.displayName = "HomePage";
+
+export default HomePage;
