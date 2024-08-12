@@ -9,7 +9,7 @@ interface HomePageProps {}
  */
 
 const HomePage = ({}: Readonly<HomePageProps>) => {
-  redirect("/dashboard");
+  redirect("/home");
 };
 
 HomePage.displayName = "HomePage";
