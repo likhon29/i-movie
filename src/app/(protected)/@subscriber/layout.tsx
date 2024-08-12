@@ -11,29 +11,21 @@ const ParticipantPageLayout = ({
 }: Readonly<ParticipantPageLayoutProps>) => {
   return (
     <Fragment>
-      <div className="container-fluid">
-        <div className="row">
+      <div className="">
+        <div className="w-full">
           {/* Left Sidebar */}
-          <div className="col-2 position-fixed h-100 border">
+          <div className="col-2 position-fixed h-100  border-end  ">
             <SiteNavigation navigation="participant" />
           </div>
 
           {/* Middle Section */}
           <div
-            className="col-7 offset-2"
+            className="col-10 offset-2"
             style={{ overflowY: "auto", height: "100vh" }}
           >
             <div className="py-7">
               <div className="px-4 sm:px-6 lg:px-8">{children}</div>
             </div>
-          </div>
-
-          {/* Right Sidebar */}
-          <div
-            className="col-3 border"
-            style={{ overflowY: "auto", height: "100vh" }}
-          >
-            <div className="py-7">right side</div>
           </div>
         </div>
       </div>

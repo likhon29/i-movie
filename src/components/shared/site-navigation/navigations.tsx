@@ -8,6 +8,7 @@ import { adminNavigations, participantNavigations } from "@/config/navigations";
 
 import { cn } from "@/utils";
 import { BeakerIcon } from "@heroicons/react/24/outline";
+import NavigationItem from "./navigation-item";
 
 interface SiteNavigationProps {
   navigation: "admin" | "participant";
@@ -19,31 +20,33 @@ const Navigations = ({ navigation }: Readonly<SiteNavigationProps>) => {
     navigation === "admin" ? adminNavigations : participantNavigations;
 
   return (
-    <div className="">
-      <p>Menu</p>
-      {navigations?.menu?.map((nav) => {
-        const isCurrent = pathname.includes(nav.href);
-        const Icon = isCurrent ? nav.activeIcon : nav.inactiveIcon;
-        return (
-          <Link
-            key={nav.href}
-            href={nav.href}
-            className={`d-flex flex-row justify-content-between align-items-center text-start w-full ${
-              isCurrent ? "text-danger" : ""
-            }`}
-          >
-            <BeakerIcon className=" text-blue-500" />
-            <span>{nav.name}</span>
-          </Link>
-        );
-      })}
+    <div className="ps-5 mt-4">
+      <div className="my-2">
+        <p>Menu</p>
+        {navigations?.menu?.map((nav) => (
+          <NavigationItem key={nav.href} nav={nav} />
+        ))}
+      </div>
+      <div className="my-2">
+        <p>Library</p>
+        {navigations?.library?.map((nav) => (
+          <NavigationItem key={nav.href} nav={nav} />
+        ))}
+      </div>
 
-      <p>Category</p>
-      {navigations?.category?.map((nav) => (
-        <Link key={nav.href} href={nav.href}></Link>
-      ))}
+      <div className="my-2">
+        <p>Category</p>
+        {navigations?.category?.map((nav) => (
+          <NavigationItem key={nav.href} nav={nav} />
+        ))}
+      </div>
 
-      <p>Menu</p>
+      <div className="my-2">
+        <p>General</p>
+        {navigations?.general?.map((nav) => (
+          <NavigationItem key={nav.href} nav={nav} />
+        ))}
+      </div>
     </div>
   );
 };
