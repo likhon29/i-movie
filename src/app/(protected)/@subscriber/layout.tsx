@@ -18,10 +18,8 @@ const ParticipantPageLayout = ({
             <Col md={2} style={{ paddingLeft: 0, paddingRight: 0 }}>
               <SiteNavigation navigation="participant" />
             </Col>
-            <Col md={10}>
-              <div className="py-7">
-                <div className="px-4 sm:px-6 lg:px-8">{children}</div>
-              </div>
+            <Col md={10} style={{ paddingLeft: 0, paddingRight: 0 }}>
+              {children}
             </Col>
           </Row>
         </Col>
