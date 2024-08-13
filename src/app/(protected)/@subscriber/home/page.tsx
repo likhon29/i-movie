@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar";
 import NowPlaying from "./components/NowPlaying";
 import TopRated from "./components/TopRated";
 import Popular from "./components/Popular";
+import WatchList from "./components/WatchList";
 
 const HomePage = () => {
   const [isMovie, setIsMovie] = useState(true);
@@ -65,7 +66,9 @@ const HomePage = () => {
                 className="border-start ps-4 "
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
+                <SearchBar />
                 <Popular active={isMovie ? "movie" : "tv-show"} />
+                <WatchList />
               </Col>
             </Row>
           </Col>

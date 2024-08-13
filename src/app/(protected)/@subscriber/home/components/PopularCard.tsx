@@ -9,8 +9,10 @@ const PopularCard = ({
   item: {
     title: string;
     poster_path: string;
+    name: string;
   };
 }) => {
+  const title = item?.title || item?.name;
   return (
     <Row
       className=""
@@ -46,9 +48,9 @@ const PopularCard = ({
               }}
             >
               <p className="fw-semibold">
-                {item?.title?.length ?? 0 > 14
-                  ? item?.title?.slice(0, 14)
-                  : item?.title?.padEnd(15, "...")}
+                {title?.length ?? 0 > 14
+                  ? title?.slice(0, 14)
+                  : title?.padEnd(15, "...")}
               </p>
               <p
                 style={{
