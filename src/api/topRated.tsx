@@ -1,6 +1,6 @@
-export const getNowPlayingMovie = async () => {
+export const getPopularMovie = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/movie/now_playing?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
     {
       cache: "no-cache",
       headers: {
@@ -12,9 +12,9 @@ export const getNowPlayingMovie = async () => {
   return data;
 };
 
-export const getNowPlayingTvShow = async () => {
+export const getPopularTvShow = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/tv/airing_today?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/tv/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
     {
       cache: "no-cache",
       headers: {
