@@ -5,7 +5,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const NowPlaying = ({ active }: { active: string }) => {
-  const [nowPlaying, setNowPlaying] = useState([]);
+  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -77,12 +77,27 @@ const NowPlaying = ({ active }: { active: string }) => {
                     backgroundPosition: "center",
                   }}
                 >
-                  <div className="position-absolute top-50 start-50 translate-middle d-flex flex-column gap-2">
-                    <Button variant="primary" className="w-100">
-                      Button 1
-                    </Button>
-                    <Button variant="secondary" className="w-100">
-                      Button 2
+                  <Button
+                    variant="secondary"
+                    className="position-absolute w-20 "
+                    style={{
+                      top: 0,
+                      right: 0,
+                      margin: "10px  10px",
+                    }}
+                  >
+                    +
+                  </Button>
+                  <div
+                    className="position-absolute  "
+                    style={{
+                      bottom: 0,
+                      //   right: 0,
+                      margin: "10px  0",
+                    }}
+                  >
+                    <Button variant="danger" className="  text-white w-100 ">
+                      WATCH NOW
                     </Button>
                   </div>
                 </div>

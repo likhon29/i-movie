@@ -40,7 +40,9 @@ const TopRated = ({ active }: { active: string }) => {
     <Row className="mt-3">
       <Col md={12}>
         <div className="d-flex justify-content-between align-content-center">
-          <p className="my-2">Top Rated Movie</p>
+          <p className="my-2">
+            Top Rated {active === "movie" ? "Movies" : "TV Shows"}
+          </p>
           <div className="d-flex justify-content-center gap-1">
             <Button variant="light">
               <IoIosArrowBack />
