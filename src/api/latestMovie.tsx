@@ -2,7 +2,7 @@ export const getLatestMovie = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/movie/latest?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
     {
-      next: { revalidate: 1000 },
+      next: { revalidate: 60 },
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`,
       },
