@@ -8,10 +8,9 @@ interface SiteNavigationProps {
 
 const SiteNavigation = ({ navigation }: Readonly<SiteNavigationProps>) => {
   return (
-    <div>
-      <div className="d-none d-lg-flex position-fixed top-0 bottom-0 zindex-50 ">
-        <Sidebar navigation={navigation} />
-      </div>
+    <div className=" " style={{ paddingLeft: 0, paddingRight: 0 }}>
+      {" "}
+      <Sidebar navigation={navigation} />
       <div className="position-sticky top-0 zindex-40 d-lg-none">
         <MobileNavbar navigation="admin" />
       </div>

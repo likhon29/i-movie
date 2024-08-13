@@ -7,8 +7,8 @@ interface SidebarProps {
 
 const Sidebar = ({ navigation }: Readonly<SidebarProps>) => {
   return (
-    <div className="pt-3">
-      <h2 className=" mx-5 ">iMovie</h2>
+    <div className="pt-3 border-end vh-100">
+      <h2 className=" mx-5 text-muted ">iMovie</h2>
       <Navigations navigation={navigation} />
     </div>
   );

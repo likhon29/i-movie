@@ -20,28 +20,28 @@ const Navigations = ({ navigation }: Readonly<SiteNavigationProps>) => {
     navigation === "admin" ? adminNavigations : participantNavigations;
 
   return (
-    <div className="ps-5 mt-4">
-      <div className="my-2">
+    <div className="ps-5 ">
+      <div className="pt-2">
         <p>Menu</p>
         {navigations?.menu?.map((nav) => (
           <NavigationItem key={nav.href} nav={nav} />
         ))}
       </div>
-      <div className="my-2">
+      <div className="pt-2">
         <p>Library</p>
         {navigations?.library?.map((nav) => (
           <NavigationItem key={nav.href} nav={nav} />
         ))}
       </div>
 
-      <div className="my-2">
+      <div className="pt-2">
         <p>Category</p>
         {navigations?.category?.map((nav) => (
           <NavigationItem key={nav.href} nav={nav} />
         ))}
       </div>
 
-      <div className="my-2">
+      <div className="pt-2">
         <p>General</p>
         {navigations?.general?.map((nav) => (
           <NavigationItem key={nav.href} nav={nav} />

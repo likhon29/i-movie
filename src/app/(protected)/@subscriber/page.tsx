@@ -1,13 +1,13 @@
 import React from "react";
-import DashboardPage from "./dashboard/page";
+import HomePage from "./home/page";
 
-interface ParticipentPageProps {}
+interface SubscriberPageProps {}
 
-const ParticipentPage = ({}: Readonly<ParticipentPageProps>) => {
+const SubscriberPage = ({}: Readonly<SubscriberPageProps>) => {
   // Redirects or renders the ParticipantEventPage component as default dashboard page
-  return <DashboardPage />;
+  return <HomePage />;
 };
 
-ParticipentPage.displayName = "ParticipentPage";
+SubscriberPage.displayName = "SubscriberHomePage";
 
-export default ParticipentPage;
+export default SubscriberPage;

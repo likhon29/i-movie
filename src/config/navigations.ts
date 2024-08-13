@@ -103,23 +103,18 @@ export const participantNavigations: NavigationsProps = {
     ],
     general: [
         {
-            name: 'TV-Show',
-            href: '/tv-show',
+            name: 'Settings',
+            href: '/settings',
             inactiveIcon: Squares2X2IconOutline,
             activeIcon: Squares2X2IconSolid,
         },
         {
-            name: 'Movie',
-            href: '/movie',
+            name: 'Logout',
+            href: '/logout',
             inactiveIcon: BanknotesIconOutline,
             activeIcon: BanknotesIconSolid,
         },
-        {
-            name: 'Anime',
-            href: '/anime',
-            inactiveIcon: UsersIconOutline,
-            activeIcon: UsersIconSolid,
-        }
+
     ],
 };
 

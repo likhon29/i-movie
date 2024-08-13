@@ -1,9 +1,11 @@
 "use client";
 import { getLatestMovie } from "@/api";
+import assets from "@/assets";
+import Image from "next/image";
 import React, { useEffect } from "react";
 
 const HomePage = () => {
-  const [lasted, setLasted] = React.useState({});
+  const [lasted, setLasted] = React.useState<{ title: string } | null>(null);
   const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     setLoading(true);
@@ -18,12 +20,13 @@ const HomePage = () => {
       });
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="container p-3">
-      <div className="row justify-content-center gap-2">
-        <div className="col col-lg-8 border">1 of 3</div>
-        <div className="col col-lg-3 border">3 of 3</div>
-      </div>
+    <div className="bg-danger">
+      <h1>{lasted?.title}</h1>
     </div>
   );
 };
