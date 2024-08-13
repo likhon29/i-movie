@@ -9,7 +9,7 @@ import TopRated from "./components/TopRated";
 import Popular from "./components/Popular";
 import WatchList from "./components/WatchList";
 
-const HomePage = () => {
+const SubscriberHomePage = () => {
   const [isMovie, setIsMovie] = useState(true);
   const [isTvShow, setIsTvShow] = useState(false);
 
@@ -78,4 +78,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default SubscriberHomePage;

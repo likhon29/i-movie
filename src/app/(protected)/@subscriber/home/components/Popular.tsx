@@ -38,7 +38,6 @@ const Popular = ({ active }: { active: string }) => {
 
   return (
     <div>
-     
       <div className="d-flex justify-content-between align-content-center mt-4 mb-2 ">
         <h6 className=" ">Popular Movies</h6>
 
@@ -49,6 +48,7 @@ const Popular = ({ active }: { active: string }) => {
           item: {
             title: any;
             poster_path: string;
+            name: any;
           },
           index: number
         ) => {

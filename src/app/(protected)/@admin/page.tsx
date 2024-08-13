@@ -1,13 +1,12 @@
+import UpcomingPage from "@/components/shared/upcoming";
 import React from "react";
 
-import DashboardPage from "./dashboard/page";
-
-interface AdminPageProps {}
-
-const AdminPage = ({}: Readonly<AdminPageProps>) => {
-  return <DashboardPage />;
+const AdminDashboardPage = () => {
+  return (
+    <div>
+      <UpcomingPage title="Admin Dashboard Home Page" />
+    </div>
+  );
 };
 
-AdminPage.displayName = "AdminPage";
-
-export default AdminPage;
+export default AdminDashboardPage;

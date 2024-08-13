@@ -30,17 +30,9 @@ const WatchList = () => {
 
         <HiOutlineDotsHorizontal />
       </div>
-      {data?.slice(0, 3)?.map(
-        (
-          item: {
-            title: any;
-            poster_path: string;
-          },
-          index: number
-        ) => {
-          return <PopularCard key={index} item={item} />;
-        }
-      )}
+      {data?.slice(0, 3)?.map((item, index) => (
+        <PopularCard key={index} item={item} />
+      ))}
     </div>
   );
 };
