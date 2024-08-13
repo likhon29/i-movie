@@ -57,7 +57,7 @@ const HomePage = () => {
 
                 <Poster active={isMovie ? "movie" : "tv-show"} />
                 <NowPlaying active={isMovie ? "movie" : "tv-show"} />
-                {/* <TopRated active={isMovie ? "movie" : "tv-show"} /> */}
+                <TopRated active={isMovie ? "movie" : "tv-show"} />
               </Col>
               <Col
                 md={3}
