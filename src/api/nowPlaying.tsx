@@ -1,8 +1,8 @@
-export const getLatestMovie = async () => {
+export const getNowPlayingMovie = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/movie/latest?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/movie/now_playing?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
     {
-      next: { revalidate: 1000 },
+      cache: "no-cache",
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`,
       },
@@ -11,5 +11,3 @@ export const getLatestMovie = async () => {
   const data = await response.json();
   return data;
 };
-
-
