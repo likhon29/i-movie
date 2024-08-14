@@ -49,7 +49,7 @@ const Popular = ({ active }: { active: string }) => {
     >
       <div
         style={{
-          width: "90px",
+          width: "60px",
           backgroundColor: "#ccc",
           borderRadius: "8px",
         }}
@@ -108,14 +108,14 @@ const Popular = ({ active }: { active: string }) => {
           {/* Show "See More" button if there are more than 2 items */}
           {data.length > 2 && !showMore && (
             <Button
-              className="w-100 text-uppercase text-danger "
+              className="w-100 text-uppercase  "
               onClick={() => setShowMore(true)}
               style={{
                 height: "50px",
-                backgroundColor: "#FFD0D0",
+                backgroundColor: "#fde8ef",
                 border: "none",
-                // text bold
                 fontWeight: "bold",
+                color: "#e71d61",
               }}
             >
               See More

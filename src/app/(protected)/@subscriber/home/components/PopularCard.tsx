@@ -14,78 +14,53 @@ const PopularCard = ({
 }) => {
   const title = item?.title || item?.name;
   return (
-    <Row
-      className=""
-      style={{
-        padding: 0,
-      }}
-    >
+    <Row className="g-0" style={{ margin: 0 }}>
       <Col md={12} className="mb-3">
-        <div
-          className="d-flex gap-3"
-          style={{
-            paddingLeft: 0,
-            paddingRight: 0,
-          }}
-        >
-          <Image
-            src={makeImgUrl(item?.poster_path, "original")}
-            width={80}
-            height={100}
-            alt="item"
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-              paddingLeft: 0,
-              paddingRight: 0,
-            }}
-          />
-          <div className="py-1">
+        <div className="d-flex align-items-start" style={{ width: "100%" }}>
+          {/* Make the image responsive with max width */}
+          <div style={{ flex: "0 0 80px", maxWidth: "60px" }}>
+            <Image
+              src={makeImgUrl(item?.poster_path, "original")}
+              width={80}
+              height={80}
+              alt="item"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </div>
+          {/* Content section takes the remaining width */}
+          <div className="ms-3 py-1" style={{ flex: 1 }}>
             <div
-              className="d-flex justify-content-between align-content-center gap-4 w-100 "
+              className="d-flex justify-content-between align-items-center"
               style={{
                 fontSize: ".8rem",
               }}
             >
-              <p className="fw-semibold">
-                {title?.length ?? 0 > 14
-                  ? title?.slice(0, 14)
-                  : title?.padEnd(15, "...")}
+              <p className="fw-semibold mb-0">
+                {title?.length && title.length > 14 ? title.slice(0, 14)  : title}
               </p>
-              <p
-                style={{
-                  margin: 0,
-                  padding: 0,
-                  marginBottom: 0,
-                }}
-              >
-                PG-13
-              </p>
+              <p className="mb-0">PG-13</p>
             </div>
-            <p
-              className="text-muted"
-              style={{
-                fontSize: ".8rem",
-              }}
-            >
-              Action, Horor
+            <p className="text-muted mt-2 mb-2" style={{ fontSize: ".8rem" }}>
+              Action, Horror
             </p>
-            <div
-              className="rating"
-              style={{
-                padding: 0,
-              }}
-            >
-              <input type="radio" name="rating" value="5" id="5" />
-              <label htmlFor="5">☆</label>{" "}
-              <input type="radio" name="rating" value="4" id="4" />
-              <label htmlFor="4">☆</label>{" "}
-              <input type="radio" name="rating" value="3" id="3" />
-              <label htmlFor="3">☆</label>{" "}
-              <input type="radio" name="rating" value="2" id="2" />
-              <label htmlFor="2">☆</label>{" "}
-              <input type="radio" name="rating" value="1" id="1" />
-              <label htmlFor="1">☆</label>{" "}
+            <div className="rating d-flex">
+              {/* Rating stars */}
+              {[5, 4, 3, 2, 1].map((star) => (
+                <React.Fragment key={star}>
+                  <input
+                    type="radio"
+                    name="rating"
+                    value={star}
+                    id={String(star)}
+                  />
+                  <label htmlFor={String(star)}>☆</label>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
