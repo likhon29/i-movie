@@ -8,15 +8,56 @@ iMovie is a single-page web application built with **Next.js** and **TypeScript*
 
 [Live Site](https://i-movie-cyan.vercel.app/)
 
-## Features
+## Features / Requirements
 
-- **Three-column layout** with movie and TV show details fetched from TMDB API.
-- **Two functional tabs** (Movie and TV Show) displaying content in rows:
-  - **Row 1**: Displays the latest movie/TV show.
-  - **Row 2**: Displays a horizontally scrollable list of 12 now-playing movies or airing TV shows.
-  - **Row 3**: Displays a horizontally scrollable list of 12 popular movies or TV shows.
-- Clicking on any item in rows 2 and 3 will update the content in row 1.
-- Non-functional first and third columns with placeholder icons.
+1. **Three-Column Layout**:
+
+   - The web application features a three-column design.
+   - **First Column**: Non-functional, containing static items like Menu, Library, Category, and General (no interaction required). Icons are used to represent these items.
+   - **Second Column**: Functional, displaying movie and TV show data. It has two tabs for Movies and TV Shows:
+     - **Tab 1: Movies**:
+       1. **Row 1**: Displays the latest movie from the TMDB API.
+       2. **Row 2**: Displays a horizontal list of the first 12 "Now Playing" movies, with 4 items visible at a time. Clicking on an item updates the first row with its details.
+       3. **Row 3**: Displays a horizontal list of the first 12 popular movies, with 3 items visible at a time. Clicking on an item updates the first row with its details.
+     - **Tab 2: TV Shows**:
+       1. **Row 1**: Displays the latest TV show from the TMDB API.
+       2. **Row 2**: Displays a horizontal list of the first 12 "Now Playing" TV shows, with 4 items visible at a time.
+       3. **Row 3**: Displays a horizontal list of the first 12 popular TV shows, with 3 items visible at a time.
+   - **Third Column**: Non-functional, displaying more popular movie and TV show data:
+
+     1. First row shows 2 popular movies.
+     2. Second row shows 4 popular TV shows.
+
+   - **Details Section**: Clicking on a movie or TV show in the second column displays detailed information in the third column. The details include the title, overview, release date, and rating.
+
+2. **API Integration**:
+
+   - The application integrates with the TMDB API to fetch movie and TV show data.
+   - **API Key**: Use a TMDB API key to make requests.
+   - **API Endpoints**: Utilize the following endpoints:
+     - **Movie API**:
+       - Latest Movie
+       - Now Playing Movies
+       - Popular Movies
+       - Movie Details
+     - **TV Show API**:
+       - Latest TV Show
+       - Now Playing TV Shows
+       - Popular TV Shows
+       - TV Show Details
+
+3. **Styling**:
+   - Use Bootstrap for UI design.
+   - Ensure responsive design across different devices.
+   - Slider: Implement a horizontal slider for displaying multiple items.
+
+## Technical Details
+
+- **Frontend Framework**: Next.js (with TypeScript)
+- **API**: The Movie DB API
+- **Styling**: Bootstrap for UI design
+- **Responsive Design**: Ensured across different devices using Bootstrap grid and utility classes.
+- **Code Architecture**: Follows best practices, including component reusability, separation of concerns, and proper project structure.
 
 ## API Endpoints
 
