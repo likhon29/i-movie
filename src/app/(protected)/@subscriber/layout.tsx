@@ -2,13 +2,13 @@ import React from "react";
 import SiteNavigation from "@/components/shared/site-navigation";
 import { Col, Container, Row } from "react-bootstrap";
 
-interface ParticipantPageLayoutProps {
+interface SubscriberPageLayoutProps {
   children: React.ReactNode;
 }
 
-const ParticipantPageLayout = ({
+const SubscriberPageLayout = ({
   children,
-}: Readonly<ParticipantPageLayoutProps>) => {
+}: Readonly<SubscriberPageLayoutProps>) => {
   return (
     <Container fluid>
       <Row>
@@ -18,7 +18,7 @@ const ParticipantPageLayout = ({
           className="p-0 vh-100 position-fixed"
           style={{ top: 0, left: 0, zIndex: 1, overflowY: "auto" }}
         >
-          <SiteNavigation navigation="participant" />
+          <SiteNavigation navigation="subscriber" />
         </Col>
 
         {/* Main Content */}
@@ -34,8 +34,6 @@ const ParticipantPageLayout = ({
   );
 };
 
-ParticipantPageLayout.displayName = "ParticipantPageLayout";
+SubscriberPageLayout.displayName = "SubscriberPageLayout";
 
-export default ParticipantPageLayout;
-
-
+export default SubscriberPageLayout;

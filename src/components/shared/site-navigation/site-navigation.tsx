@@ -3,7 +3,7 @@ import Sidebar from "./sidebar";
 import MobileNavbar from "./mobile-navabar";
 
 interface SiteNavigationProps {
-  navigation: "admin" | "participant";
+  navigation: "admin" | "subscriber";
 }
 
 const SiteNavigation = ({ navigation }: Readonly<SiteNavigationProps>) => {

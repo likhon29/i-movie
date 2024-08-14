@@ -2,7 +2,7 @@ import React from "react";
 import Navigations from "./navigations";
 
 interface SidebarProps {
-  navigation: "admin" | "participant";
+  navigation: "admin" | "subscriber";
 }
 
 const Sidebar = ({ navigation }: Readonly<SidebarProps>) => {

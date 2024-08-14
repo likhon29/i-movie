@@ -4,20 +4,18 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { adminNavigations, participantNavigations } from "@/config/navigations";
+import { adminNavigations, subscriberNavigations } from "@/config/navigations";
 
-import { cn } from "@/utils";
-import { BeakerIcon } from "@heroicons/react/24/outline";
 import NavigationItem from "./navigation-item";
 
 interface SiteNavigationProps {
-  navigation: "admin" | "participant";
+  navigation: "admin" | "subscriber";
 }
 
 const Navigations = ({ navigation }: Readonly<SiteNavigationProps>) => {
   const pathname = usePathname();
   const navigations =
-    navigation === "admin" ? adminNavigations : participantNavigations;
+    navigation === "admin" ? adminNavigations : subscriberNavigations;
 
   return (
     <div className="ps-5 ">

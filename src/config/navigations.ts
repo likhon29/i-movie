@@ -6,6 +6,15 @@ import {
     Squares2X2Icon as Squares2X2IconOutline,
     TrophyIcon as TrophyIconOutline,
     UsersIcon as UsersIconOutline,
+    InboxArrowDownIcon as InboxArrowDownIconOutline,
+    Cog6ToothIcon as Cog6ToothIconOutline,
+    ArrowLeftEndOnRectangleIcon as ArrowLeftEndOnRectangleOutline,
+    FilmIcon as FilmIconOutline,
+    ReceiptRefundIcon as ReceiptRefundIconOutline,
+    StarIcon as StarIconOutline,
+    SquaresPlusIcon as SquaresPlusIconOutline,
+    HomeIcon as HomeIconOutline,
+    BugAntIcon as BugAntIconOutline,
 } from '@heroicons/react/24/outline'
 import {
     BanknotesIcon as BanknotesIconSolid,
@@ -14,6 +23,15 @@ import {
     Squares2X2Icon as Squares2X2IconSolid,
     TrophyIcon as TrophyIconSolid,
     UsersIcon as UsersIconSolid,
+    InboxArrowDownIcon as InboxArrowDownIconSolid,
+    Cog6ToothIcon as Cog6ToothIconSolid,
+    ArrowLeftEndOnRectangleIcon as ArrowLeftEndOnRectangleSolid,
+    FilmIcon as FilmIconSolid,
+    ReceiptRefundIcon as ReceiptRefundIconSolid,
+    StarIcon as StarIconSolid,
+    SquaresPlusIcon as SquaresPlusIconSolid,
+    HomeIcon as HomeIconSolid,
+    BugAntIcon as BugAntIconSolid,
 } from '@heroicons/react/24/solid'
 
 // Define the type for the navigation item
@@ -33,25 +51,25 @@ export interface NavigationsProps {
 }
 
 
-export const participantNavigations: NavigationsProps = {
+export const subscriberNavigations: NavigationsProps = {
     menu: [
         {
             name: 'Home',
             href: '/home',
-            inactiveIcon: Squares2X2IconOutline,
-            activeIcon: Squares2X2IconSolid,
+            inactiveIcon: HomeIconOutline,
+            activeIcon: HomeIconSolid,
         },
         {
             name: 'Community',
             href: '/community',
-            inactiveIcon: BanknotesIconOutline,
-            activeIcon: BanknotesIconSolid,
+            inactiveIcon: UsersIconOutline,
+            activeIcon: UsersIconSolid,
         },
         {
             name: 'Discover',
             href: '/discover',
-            inactiveIcon: UsersIconOutline,
-            activeIcon: UsersIconSolid,
+            inactiveIcon: SquaresPlusIconOutline,
+            activeIcon: SquaresPlusIconSolid,
         },
         {
             name: 'Awards',
@@ -64,20 +82,20 @@ export const participantNavigations: NavigationsProps = {
         {
             name: 'Recent',
             href: '/recent',
-            inactiveIcon: Squares2X2IconOutline,
-            activeIcon: Squares2X2IconSolid,
+            inactiveIcon: ReceiptRefundIconOutline,
+            activeIcon: ReceiptRefundIconSolid,
         },
         {
             name: 'Top Rated',
             href: '/top-rated',
-            inactiveIcon: BanknotesIconOutline,
-            activeIcon: BanknotesIconSolid,
+            inactiveIcon: StarIconOutline,
+            activeIcon: StarIconSolid,
         },
         {
             name: 'Downloaded',
             href: '/downloaded',
-            inactiveIcon: UsersIconOutline,
-            activeIcon: UsersIconSolid,
+            inactiveIcon: InboxArrowDownIconOutline,
+            activeIcon: InboxArrowDownIconSolid,
         },
 
     ],
@@ -85,34 +103,34 @@ export const participantNavigations: NavigationsProps = {
         {
             name: 'TV-Show',
             href: '/tv-show',
-            inactiveIcon: Squares2X2IconOutline,
-            activeIcon: Squares2X2IconSolid,
-        },
-        {
-            name: 'Movie',
-            href: '/movie',
             inactiveIcon: BanknotesIconOutline,
             activeIcon: BanknotesIconSolid,
         },
         {
+            name: 'Movie',
+            href: '/movie',
+            inactiveIcon: FilmIconOutline,
+            activeIcon: FilmIconSolid,
+        },
+        {
             name: 'Anime',
             href: '/anime',
-            inactiveIcon: UsersIconOutline,
-            activeIcon: UsersIconSolid,
+            inactiveIcon: BugAntIconOutline,
+            activeIcon: BugAntIconSolid,
         },
     ],
     general: [
         {
             name: 'Settings',
             href: '/settings',
-            inactiveIcon: Squares2X2IconOutline,
-            activeIcon: Squares2X2IconSolid,
+            inactiveIcon: Cog6ToothIconOutline,
+            activeIcon: Cog6ToothIconSolid,
         },
         {
             name: 'Logout',
             href: '/logout',
-            inactiveIcon: BanknotesIconOutline,
-            activeIcon: BanknotesIconSolid,
+            inactiveIcon: ArrowLeftEndOnRectangleOutline,
+            activeIcon: ArrowLeftEndOnRectangleSolid,
         },
 
     ],
