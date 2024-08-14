@@ -3,8 +3,15 @@ import { makeImgUrl } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { SetSelectedContentTypes } from "../page";
 
-const TopRated = ({ active }: { active: string }) => {
+const TopRated = ({
+  active,
+  setSelected,
+}: {
+  active: string;
+  setSelected: SetSelectedContentTypes;
+}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -65,6 +72,7 @@ const TopRated = ({ active }: { active: string }) => {
             ) => {
               return (
                 <div
+                  onClick={() => setSelected(item)}
                   key={index}
                   className="position-relative d-flex justify-content-center align-items-center"
                   style={{
