@@ -5,7 +5,7 @@ import { getPopularTvShow, getTvShowDetails } from "@/api";
 import PopularCard from "./PopularCard";
 import { Button } from "react-bootstrap";
 import SeeMore from "@/components/ui/see-more-button";
-import { SelectedContentTypes } from "../page";
+import { SelectedContentTypes } from "@/types";
 
 const WatchList = () => {
   const [data, setData] = useState([]);

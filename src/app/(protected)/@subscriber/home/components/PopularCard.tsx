@@ -25,7 +25,7 @@ const PopularCard = ({
           : getTvShowDetails(item?.id).then((data) => setContent(data));
     }
     setLoading(false);
-  }, [item]);
+  }, [item, active, setLoading]);
 
   const title = content?.title || content?.name;
 
