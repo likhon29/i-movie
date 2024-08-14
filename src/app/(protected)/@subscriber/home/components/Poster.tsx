@@ -2,20 +2,29 @@ import { getLatestMovie, getLatestTVShow } from "@/api";
 import { makeImgUrl } from "@/utils";
 import React, { useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { SelectedContentTypes, SetSelectedContentTypes } from "../page";
 
-const Poster = ({ active }: { active: string }) => {
-  const [latest, setLatest] = React.useState<{
-    title: string | null;
-    poster_path: string;
-    name: string | null;
-  } | null>(null);
+const Poster = ({
+  active,
+  selected,
+  setSelected,
+}: {
+  active: string;
+  selected: SelectedContentTypes;
+  setSelected: SetSelectedContentTypes;
+}) => {
+  // const [latest, setLatest] = React.useState<{
+  //   title: string | null;
+  //   poster_path: string;
+  //   name: string | null;
+  // } | null>(null);
   const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     if (active === "movie") {
       setLoading(true);
       getLatestMovie()
         .then((data) => {
-          setLatest(data);
+          setSelected(data);
           setLoading(false);
         })
         .catch((error) => {
@@ -25,7 +34,7 @@ const Poster = ({ active }: { active: string }) => {
     } else {
       getLatestTVShow()
         .then((data) => {
-          setLatest(data);
+          setSelected(data);
           setLoading(false);
         })
         .catch((error) => {
@@ -36,7 +45,7 @@ const Poster = ({ active }: { active: string }) => {
     }
   }, [active]);
 
-  const url = makeImgUrl(latest?.poster_path ?? "", "original");
+  const url = makeImgUrl(selected?.poster_path ?? "", "original");
 
   return (
     <div
@@ -63,7 +72,7 @@ const Poster = ({ active }: { active: string }) => {
         >
           <div className="d-flex flex-column justify-content-center h-100 p-3">
             <p className="text-muted">Season 10</p>
-            <h4>{latest?.title || latest?.name}</h4>
+            <h4>{selected?.title || selected?.name}</h4>
             <p className="text-muted">Action, Horor, Melody </p>
             <div className="d-flex gap-2">
               <Button variant="danger">Watch Now</Button>

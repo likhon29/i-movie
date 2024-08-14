@@ -3,10 +3,19 @@ import { makeImgUrl } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { SetSelectedContentTypes } from "../page";
 
-const TopRated = ({ active }: { active: string }) => {
+const TopRated = ({
+  active,
+  setSelected,
+}: {
+  active: string;
+  setSelected: SetSelectedContentTypes;
+}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0); // Track current index for swiping
+
   useEffect(() => {
     if (active === "movie") {
       setLoading(true);
@@ -32,6 +41,20 @@ const TopRated = ({ active }: { active: string }) => {
     }
   }, [active]);
 
+  // Function to handle the next arrow click
+  const handleNext = () => {
+    if (currentIndex + 3 < data.length) {
+      setCurrentIndex(currentIndex + 3); // Move to the next set of items
+    }
+  };
+
+  // Function to handle the previous arrow click
+  const handlePrev = () => {
+    if (currentIndex - 3 >= 0) {
+      setCurrentIndex(currentIndex - 3); // Move back to the previous set of items
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -44,17 +67,25 @@ const TopRated = ({ active }: { active: string }) => {
             Top Rated {active === "movie" ? "Movies" : "TV Shows"}
           </p>
           <div className="d-flex justify-content-center gap-1">
-            <Button variant="light">
+            <Button
+              variant="light"
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+            >
               <IoIosArrowBack />
             </Button>
-            <Button variant="light">
+            <Button
+              variant="light"
+              onClick={handleNext}
+              disabled={currentIndex + 3 >= data.length}
+            >
               <IoIosArrowForward />
             </Button>
           </div>
         </div>
 
-        <div className="d-flex gap-3">
-          {data?.slice(0, 3)?.map(
+        <div className="d-flex gap-3 overflow-hidden">
+          {data?.slice(currentIndex, currentIndex + 3)?.map(
             (
               item: {
                 title: any;
@@ -65,19 +96,20 @@ const TopRated = ({ active }: { active: string }) => {
             ) => {
               return (
                 <div
+                  onClick={() => setSelected(item)}
                   key={index}
                   className="position-relative d-flex justify-content-center align-items-center"
                   style={{
                     width: "300px",
                     height: "150px",
                     backgroundColor: "gray",
-                    // backgroundImage: `url(${imageUrl})`,
                     backgroundImage: `url(${makeImgUrl(
                       item?.poster_path,
                       "original"
                     )})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
+                    transition: "transform 0.5s ease-in-out", // Smooth transition for swiper effect
                   }}
                 >
                   <div

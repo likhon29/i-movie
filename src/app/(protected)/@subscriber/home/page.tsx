@@ -9,10 +9,20 @@ import TopRated from "./components/TopRated";
 import Popular from "./components/Popular";
 import WatchList from "./components/WatchList";
 
+export type SelectedContentTypes = {
+  title?: string;
+  poster_path?: string;
+  name?: string;
+};
+
+export type SetSelectedContentTypes = React.Dispatch<
+  React.SetStateAction<SelectedContentTypes>
+>;
+
 const SubscriberHomePage = () => {
   const [isMovie, setIsMovie] = useState(true);
   const [isTvShow, setIsTvShow] = useState(false);
-
+  const [selected, setSelected] = useState<SelectedContentTypes>({});
   const handleMovie = () => {
     setIsMovie(true);
     setIsTvShow(false);
@@ -57,9 +67,19 @@ const SubscriberHomePage = () => {
                   </p>
                 </div>
 
-                <Poster active={isMovie ? "movie" : "tv-show"} />
-                <NowPlaying active={isMovie ? "movie" : "tv-show"} />
-                <TopRated active={isMovie ? "movie" : "tv-show"} />
+                <Poster
+                  active={isMovie ? "movie" : "tv-show"}
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+                <NowPlaying
+                  active={isMovie ? "movie" : "tv-show"}
+                  setSelected={setSelected}
+                />
+                <TopRated
+                  active={isMovie ? "movie" : "tv-show"}
+                  setSelected={setSelected}
+                />
               </Col>
               <Col
                 md={3}

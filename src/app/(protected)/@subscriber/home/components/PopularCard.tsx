@@ -7,9 +7,9 @@ const PopularCard = ({
   item,
 }: {
   item: {
-    title: string;
+    title?: string;
     poster_path: string;
-    name: string;
+    name?: string;
   };
 }) => {
   const title = item?.title || item?.name;
