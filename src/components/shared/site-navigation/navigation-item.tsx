@@ -19,12 +19,12 @@ const NavigationItem = ({
   return (
     <div
       className={`d-flex px-1 align-items-center justify-content-between  ${
-        isCurrent
-          ? "text-danger border-end border-danger fw-bold border-3"
-          : "text-muted"
+        isCurrent ? " border-end border-danger fw-bold border-3" : "text-muted"
       }`}
       style={{
         margin: "15px 0",
+        cursor: "pointer",
+        color: isCurrent ? "#e71d61" : "#000",
       }}
     >
       <div className="d-flex flex-lg-row justify-content-between align-items-center ">
