@@ -28,7 +28,15 @@ const NavigationItem = ({
       }}
     >
       <div className="d-flex flex-lg-row justify-content-between align-items-center ">
-        <RxDashboard className="shrink-0" />
+        <Icon
+          className="shrink-0"
+          style={{
+            width: "20px",
+            height: "20px",
+            color: isCurrent ? "#e71d61" : "text-muted",
+            marginRight: "10px",
+          }}
+        />
         <Link
           key={nav.href}
           href={nav.href}
