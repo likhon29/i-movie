@@ -55,71 +55,64 @@ const NowPlaying = ({
     }
   };
 
-  // Skeleton Loader component with animations and transitions
+  // Skeleton Loader component with professional styling
   const SkeletonLoader = () => (
     <div
-      className="position-relative d-flex justify-content-center align-items-center bg-light rounded"
+      className="position-relative bg-light rounded overflow-hidden"
       style={{
-        width: "220px",
+        width: "100%",
         height: "300px",
         backgroundColor: "#e0e0e0",
-        animation: "pulse 3s infinite",
-        transition: "transform 3s ease-in-out", // Smooth transition
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        padding: "1rem",
+        boxSizing: "border-box",
+        overflow: "hidden",
       }}
     >
       <div
-        className="position-absolute w-100 h-100"
+        className="position-absolute top-0 start-0 w-100 h-100"
         style={{
           background:
-            "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
+            "linear-gradient(90deg, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.2) 75%)",
           backgroundSize: "200% 100%",
-          animation: "loading 5s infinite",
+          animation: "shimmer 1.5s infinite",
         }}
       ></div>
-      {/* <div className="skeleton-button">
-        <Button
-          variant="light"
-          className="position-absolute rounded-circle"
+      {/* Placeholder elements */}
+      <div className="position-relative d-flex flex-column justify-content-center align-items-center w-100 h-100">
+        <div
+          className="bg-secondary rounded"
           style={{
-            top: 10,
-            right: 10,
-            width: "40px",
-            height: "40px",
-            border: "none",
-            backgroundColor: "#e0e0e0",
+            width: "60%",
+            height: "50%",
+            marginBottom: "0.5rem",
           }}
-          disabled
-        ></Button>
+        ></div>
+        <div
+          className="bg-secondary rounded"
+          style={{
+            width: "80%",
+            height: "30%",
+            marginBottom: "0.5rem",
+          }}
+        ></div>
+        <div
+          className="bg-secondary rounded"
+          style={{
+            width: "50%",
+            height: "20%",
+          }}
+        ></div>
       </div>
-      <div
-        className="position-absolute w-100"
-        style={{
-          bottom: 0,
-          padding: "10px 0",
-        }}
-      >
-        <Button
-          variant="light"
-          className="w-100"
-          style={{
-            backgroundColor: "#e0e0e0",
-            border: "none",
-            height: "40px",
-          }}
-          disabled
-        >
-          <span className="placeholder col-6"></span>
-        </Button>
-      </div> */}
     </div>
   );
 
   return (
     <Row className="mt-3">
       <Col md={12}>
-        <div className="d-flex justify-content-between align-content-center">
+        <div className="d-flex justify-content-between align-items-center mb-3">
           <p className="my-2">Now Playing</p>
-          <div className="d-flex justify-content-center gap-1">
+          <div className="d-flex gap-2">
             <Button
               variant="light"
               onClick={handlePrev}
@@ -138,10 +131,12 @@ const NowPlaying = ({
         </div>
 
         {/* Display skeletons when loading */}
-        <div className="d-flex gap-3 overflow-hidden">
+        <Row className="g-3">
           {loading
             ? Array.from({ length: 4 }).map((_, index) => (
-                <SkeletonLoader key={index} />
+                <Col key={index} xs={12} sm={6} lg={3}>
+                  <SkeletonLoader />
+                </Col>
               ))
             : data?.slice(currentIndex, currentIndex + 4)?.map(
                 (
@@ -151,53 +146,66 @@ const NowPlaying = ({
                   index
                 ) => {
                   return (
-                    <div
-                      onClick={() => setSelected(item)}
-                      key={index}
-                      className="position-relative d-flex justify-content-center align-items-center"
-                      style={{
-                        width: "220px",
-                        height: "300px",
-                        backgroundColor: "gray",
-                        backgroundImage: `url(${makeImgUrl(
-                          item?.poster_path,
-                          "original"
-                        )})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        transition: "transform 0.5s ease-in-out", // Smooth transition
-                      }}
-                    >
-                      <Button
-                        variant="secondary"
-                        className="position-absolute w-20 "
-                        style={{
-                          top: 0,
-                          right: 0,
-                          margin: "10px  10px",
-                        }}
-                      >
-                        +
-                      </Button>
+                    <Col key={index} xs={12} sm={6} lg={3}>
                       <div
-                        className="position-absolute  "
+                        onClick={() => setSelected(item)}
+                        className="position-relative bg-dark rounded overflow-hidden"
                         style={{
-                          bottom: 0,
-                          margin: "10px  0",
+                          height: "300px",
+                          backgroundImage: `url(${makeImgUrl(
+                            item?.poster_path,
+                            "original"
+                          )})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          transition: "transform 0.5s ease-in-out",
                         }}
                       >
-                        <Button variant="danger" className="text-white w-100">
-                          WATCH NOW
+                        <Button
+                          variant="secondary"
+                          className="position-absolute"
+                          style={{
+                            top: 10,
+                            right: 10,
+                          }}
+                        >
+                          +
                         </Button>
+                        <div
+                          className="position-absolute w-100"
+                          style={{
+                            bottom: 10,
+                            padding: "0 10px",
+                          }}
+                        >
+                          <Button variant="danger" className="text-white w-100">
+                            WATCH NOW
+                          </Button>
+                        </div>
                       </div>
-                    </div>
+                    </Col>
                   );
                 }
               )}
-        </div>
+        </Row>
       </Col>
     </Row>
   );
 };
 
 export default NowPlaying;
+
+// CSS for shimmer animation (you can include this in a global stylesheet)
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = `
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+`;
+document.head.appendChild(styleSheet);
