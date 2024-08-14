@@ -3,6 +3,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { getPopularTvShow } from "@/api";
 import PopularCard from "./PopularCard";
 import { Button } from "react-bootstrap";
+import SeeMore from "@/components/ui/see-more-button";
 
 const WatchList = () => {
   const [data, setData] = useState([]);
@@ -92,19 +93,7 @@ const WatchList = () => {
 
           {/* Show "See More" button if there are more than 3 items */}
           {data.length > 3 && !showMore && (
-            <Button
-              className="w-100 text-uppercase text-danger "
-              onClick={() => setShowMore(true)}
-              style={{
-                height: "50px",
-                backgroundColor: "#FFD0D0",
-                border: "none",
-                // text bold
-                fontWeight: "bold",
-              }}
-            >
-              See More
-            </Button>
+            <SeeMore setShowMore={setShowMore} />
           )}
         </>
       )}

@@ -4,6 +4,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { getPopularMovie, getPopularTvShow } from "@/api";
 import PopularCard from "./PopularCard";
 import { Button } from "react-bootstrap";
+import SeeMore from "@/components/ui/see-more-button";
 
 const Popular = ({ active }: { active: string }) => {
   const [data, setData] = useState([]);
@@ -107,19 +108,7 @@ const Popular = ({ active }: { active: string }) => {
 
           {/* Show "See More" button if there are more than 2 items */}
           {data.length > 2 && !showMore && (
-            <Button
-              className="w-100 text-uppercase  "
-              onClick={() => setShowMore(true)}
-              style={{
-                height: "50px",
-                backgroundColor: "#fde8ef",
-                border: "none",
-                fontWeight: "bold",
-                color: "#e71d61",
-              }}
-            >
-              See More
-            </Button>
+            <SeeMore setShowMore={setShowMore} />
           )}
         </>
       )}
