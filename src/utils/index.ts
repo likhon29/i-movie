@@ -1,3 +1,5 @@
+import { getMovieDetails, getTvShowDetails } from "@/api";
+import { SetSelectedContentTypes } from "@/app/(protected)/@subscriber/home/page";
 import clsx from "clsx";
 
 export function cn(...inputs: any[]) {
@@ -11,3 +13,13 @@ export const makeImgUrl = (path?: string, type?: string, width?: string) => {
     }
     return "https://via.placeholder.com/500";
 }
+
+export const handleLoadDetails = async (item: any, active: string, setSelected: SetSelectedContentTypes) => {
+    if (item?.id) {
+        const content =
+            active === "movie"
+                ? await getMovieDetails(item?.id)
+                : await getTvShowDetails(item?.id);
+        setSelected(content);
+    }
+};

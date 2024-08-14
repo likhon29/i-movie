@@ -45,6 +45,8 @@ const Poster = ({
 
   const url = makeImgUrl(selected?.poster_path ?? "", "original");
 
+  console.log(selected);
+
   // Skeleton Loader component
   const SkeletonLoader = () => (
     <div
@@ -144,15 +146,18 @@ const Poster = ({
           }}
         >
           <div className="d-flex flex-column justify-content-center h-100 p-3">
-            <p
-              style={{
-                fontSize: "12px",
-                fontWeight: "bold",
-                color: "#b7b7a4",
-              }}
-            >
-              Season 10
-            </p>
+            {active !== "movie" && (
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  color: "#b7b7a4",
+                }}
+              >
+                {selected?.last_episode_to_air?.season_number &&
+                  "Session " + selected?.last_episode_to_air?.season_number}
+              </p>
+            )}
             <h4>{selected?.title || selected?.name}</h4>
             <p
               style={{
@@ -161,7 +166,10 @@ const Poster = ({
                 color: "#b7b7a4",
               }}
             >
-              Action, Horror, Melody
+              {
+                // show genres
+                selected?.genres?.map((genre) => genre.name).join(", ")
+              }
             </p>
             <div className="d-flex gap-2">
               <WatchButton />

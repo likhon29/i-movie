@@ -1,5 +1,10 @@
-import { getNowPlayingMovie, getNowPlayingTvShow } from "@/api";
-import { makeImgUrl } from "@/utils";
+import {
+  getMovieDetails,
+  getNowPlayingMovie,
+  getNowPlayingTvShow,
+  getTvShowDetails,
+} from "@/api";
+import { handleLoadDetails, makeImgUrl } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -150,7 +155,9 @@ const NowPlaying = ({
                   return (
                     <Col key={index} xs={12} sm={6} lg={3}>
                       <div
-                        onClick={() => setSelected(item)}
+                        onClick={() =>
+                          handleLoadDetails(item, active, setSelected)
+                        }
                         className="position-relative bg-dark rounded overflow-hidden"
                         style={{
                           height: "300px",
@@ -197,4 +204,3 @@ const NowPlaying = ({
 };
 
 export default NowPlaying;
-

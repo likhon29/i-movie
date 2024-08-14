@@ -10,9 +10,16 @@ import Popular from "./components/Popular";
 import WatchList from "./components/WatchList";
 
 export type SelectedContentTypes = {
+  session?: string;
   title?: string;
   poster_path?: string;
   name?: string;
+  last_episode_to_air?: {
+    episode_number: number;
+    name: string;
+    season_number: number;
+  } | null;
+  genres?: { id: number; name: string }[];
 };
 
 export type SetSelectedContentTypes = React.Dispatch<

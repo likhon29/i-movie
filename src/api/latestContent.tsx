@@ -1,3 +1,5 @@
+import { getMovieDetails, getTvShowDetails } from "./loadDetails";
+
 export const getLatestMovie = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/movie/latest?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
@@ -9,17 +11,8 @@ export const getLatestMovie = async () => {
     }
   );
   const data = await response.json();
-  const res2 = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/movie/${data?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    {
-      cache: "no-cache",
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`,
-      },
-    }
-  );
-  const data2 = await res2.json();
-  return data2;
+  const movie = await getMovieDetails(data?.id);
+  return movie;
 };
 
 export const getLatestTVShow = async () => {
@@ -33,15 +26,6 @@ export const getLatestTVShow = async () => {
     }
   );
   const data = await response.json();
-  const res2 = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/tv/${data?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    {
-      cache: "no-cache",
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_BEARER_TOKEN}`,
-      },
-    }
-  );
-  const data2 = await res2.json();
-  return data2;
+  const tvShow = await getTvShowDetails(data?.id);
+  return tvShow;
 };
