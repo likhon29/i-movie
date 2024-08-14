@@ -2,9 +2,9 @@ import { getLatestMovie, getLatestTVShow } from "@/api";
 import { makeImgUrl } from "@/utils";
 import React, { useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import { SelectedContentTypes, SetSelectedContentTypes } from "../page";
 import AddButton from "@/components/ui/add-button";
 import WatchButton from "@/components/ui/watch-button";
+import { SelectedContentTypes, SetSelectedContentTypes } from "@/types";
 
 const Poster = ({
   active,
