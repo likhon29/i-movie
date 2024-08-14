@@ -1,12 +1,29 @@
 import { makeImgUrl } from "@/utils";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { SelectedContentTypes } from "../page";
+import { getMovieDetails, getTvShowDetails } from "@/api";
 
-const PopularCard = ({ item }: { item: SelectedContentTypes }) => {
-  console.log(item);
-  const title = item?.title || item?.name;
+const PopularCard = ({
+  item,
+  active,
+}: {
+  item: SelectedContentTypes;
+  active: String;
+}) => {
+  const [content, setContent] = React.useState<SelectedContentTypes>();
+  useEffect(() => {
+    if (item?.id) {
+      const info =
+        active === "movie"
+          ? getMovieDetails(item?.id).then((data) => setContent(data))
+          : getTvShowDetails(item?.id).then((data) => setContent(data));
+    }
+  }, [item]);
+
+  const title = content?.title || content?.name;
+  const ratingOutOf5 = content?.vote_average && content?.vote_average / 2;
   return (
     <Row className="g-0" style={{ margin: 0 }}>
       <Col md={12} className="mb-3">
@@ -14,7 +31,7 @@ const PopularCard = ({ item }: { item: SelectedContentTypes }) => {
           {/* Make the image responsive with max width */}
           <div style={{ flex: "0 0 80px", maxWidth: "60px" }}>
             <Image
-              src={makeImgUrl(item?.poster_path, "original")}
+              src={makeImgUrl(content?.poster_path, "original")}
               width={80}
               height={80}
               alt="item"
@@ -39,22 +56,31 @@ const PopularCard = ({ item }: { item: SelectedContentTypes }) => {
                   ? title.slice(0, 14)
                   : title}
               </p>
-              <p className="mb-0">PG-13</p>
+              <p className="mb-0">{item?.adult ? "NC-17" : "PG-13"}</p>
             </div>
             <p className="text-muted mt-2 mb-2" style={{ fontSize: ".8rem" }}>
-              {item?.genres?.map((genre) => genre.name).join(", ")}
+              {content?.genres?.map((genre) => genre.name).join(", ")}
             </p>
             <div className="rating d-flex">
-              {/* Rating stars */}
-              {[5, 4, 3, 2, 1].map((star) => (
+              {/* Dynamic Rating stars */}
+              {[4, 3, 2, 1].map((star) => (
                 <React.Fragment key={star}>
                   <input
                     type="radio"
                     name="rating"
                     value={star}
-                    id={String(star)}
+                    id={`star-${star}`}
+                    checked={star === Math.ceil(ratingOutOf5 || 0)} // Mark the correct star
+                    readOnly
                   />
-                  <label htmlFor={String(star)}>☆</label>
+                  <label
+                    htmlFor={`star-${star}`}
+                    style={{
+                      color: star <= Math.ceil(ratingOutOf5 || 0) ? "" : "gray", // Highlight filled stars
+                    }}
+                  >
+                    ☆
+                  </label>
                 </React.Fragment>
               ))}
             </div>

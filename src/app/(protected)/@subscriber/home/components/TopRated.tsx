@@ -130,6 +130,7 @@ const TopRated = ({
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         transition: "transform 0.5s ease-in-out",
+                        cursor: "pointer",
                       }}
                     >
                       <div
@@ -145,7 +146,10 @@ const TopRated = ({
                             color: "#b7b7a4",
                           }}
                         >
-                          (2018)
+                          (
+                          {item?.release_date?.split("-")[0] ||
+                            item?.first_air_date?.split("-")[0]}
+                          )
                         </span>
                       </div>
                     </div>

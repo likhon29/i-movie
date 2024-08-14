@@ -168,6 +168,7 @@ const NowPlaying = ({
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                           transition: "transform 0.5s ease-in-out",
+                          cursor: "pointer",
                         }}
                       >
                         <div

@@ -22,6 +22,10 @@ export type SelectedContentTypes = {
     season_number: number;
   } | null;
   genres?: { id: number; name: string }[];
+  adult?: boolean;
+  release_date?: string;
+  first_air_date?: string;
+  vote_average?: number;
 };
 
 export type SetSelectedContentTypes = React.Dispatch<

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { getPopularTvShow, getTvShowDetails } from "@/api";
@@ -82,9 +83,8 @@ const WatchList = () => {
         <>
           {data
             ?.slice(0, showMore ? data.length : 4)
-            ?.map(async (item: SelectedContentTypes, index: number) => {
-              const detailsInfo = await getTvShowDetails(item?.id);
-              return <PopularCard key={index} item={detailsInfo} />;
+            ?.map((item: SelectedContentTypes, index: number) => {
+              return <PopularCard key={index} item={item} active="" />;
             })}
 
           {/* Show "See More" button if there are more than 3 items */}
