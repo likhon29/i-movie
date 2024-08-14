@@ -104,7 +104,14 @@ const Popular = ({ active }: { active: string }) => {
           {data
             ?.slice(0, showMore ? data.length : 2)
             ?.map((item: SelectedContentTypes, index: number) => {
-              return <PopularCard key={index} item={item} active={active} />;
+              return (
+                <PopularCard
+                  setLoading={setLoading}
+                  key={index}
+                  item={item}
+                  active={active}
+                />
+              );
             })}
 
           {/* Show "See More" button if there are more than 2 items */}

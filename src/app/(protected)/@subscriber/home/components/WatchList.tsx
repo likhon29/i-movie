@@ -84,7 +84,14 @@ const WatchList = () => {
           {data
             ?.slice(0, showMore ? data.length : 4)
             ?.map((item: SelectedContentTypes, index: number) => {
-              return <PopularCard key={index} item={item} active="" />;
+              return (
+                <PopularCard
+                  setLoading={setLoading}
+                  key={index}
+                  item={item}
+                  active=""
+                />
+              );
             })}
 
           {/* Show "See More" button if there are more than 3 items */}

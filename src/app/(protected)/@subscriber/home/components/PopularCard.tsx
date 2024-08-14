@@ -6,24 +6,31 @@ import { SelectedContentTypes } from "../page";
 import { getMovieDetails, getTvShowDetails } from "@/api";
 
 const PopularCard = ({
+  setLoading,
   item,
   active,
 }: {
+  setLoading: (loading: boolean) => void;
   item: SelectedContentTypes;
   active: String;
 }) => {
   const [content, setContent] = React.useState<SelectedContentTypes>();
   useEffect(() => {
+    setLoading(true);
     if (item?.id) {
       const info =
         active === "movie"
           ? getMovieDetails(item?.id).then((data) => setContent(data))
           : getTvShowDetails(item?.id).then((data) => setContent(data));
     }
+    setLoading(false);
   }, [item]);
 
   const title = content?.title || content?.name;
   const ratingOutOf5 = content?.vote_average && content?.vote_average / 2;
+
+  
+
   return (
     <Row className="g-0" style={{ margin: 0 }}>
       <Col md={12} className="mb-3">
