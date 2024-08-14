@@ -14,11 +14,11 @@ const TopRated = ({
 }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0); // Track current index for swiping
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    setLoading(true);
     if (active === "movie") {
-      setLoading(true);
       getPopularMovie()
         .then((data) => {
           setData(data?.results);
@@ -41,63 +41,47 @@ const TopRated = ({
     }
   }, [active]);
 
-  // Function to handle the next arrow click
   const handleNext = () => {
     if (currentIndex + 3 < data.length) {
-      setCurrentIndex(currentIndex + 3); // Move to the next set of items
+      setCurrentIndex(currentIndex + 3);
     }
   };
 
-  // Function to handle the previous arrow click
   const handlePrev = () => {
     if (currentIndex - 3 >= 0) {
-      setCurrentIndex(currentIndex - 3); // Move back to the previous set of items
+      setCurrentIndex(currentIndex - 3);
     }
   };
 
-  // Skeleton Loader component with animations and transitions
   const SkeletonLoader = () => (
-    <div
-      className="position-relative d-flex justify-content-center align-items-center bg-light rounded"
-      style={{
-        width: "300px",
-        height: "150px",
-        backgroundColor: "#e0e0e0",
-        animation: "pulse 2s infinite",
-        transition: "transform 0.5s ease-in-out", // Smooth transition
-      }}
-    >
+    <Col xs={12} sm={6} lg={4} className="mb-3">
       <div
-        className="position-absolute w-100 h-100"
+        className="bg-light rounded"
         style={{
-          background:
-            "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
-          backgroundSize: "200% 100%",
-          animation: "loading 1.5s infinite",
+          width: "100%",
+          height: "200px",
+          backgroundColor: "#e0e0e0",
+          animation: "pulse 1.5s infinite",
+          position: "relative",
         }}
-      ></div>
-      <div className="skeleton-button">
-        <Button
-          variant="light"
-          className="position-absolute rounded-circle"
+      >
+        <div
+          className="position-absolute w-100 h-100"
           style={{
-            top: 10,
-            right: 10,
-            width: "40px",
-            height: "40px",
-            border: "none",
-            backgroundColor: "#e0e0e0",
+            background:
+              "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
+            backgroundSize: "200% 100%",
+            animation: "loading 1.5s infinite",
           }}
-          disabled
-        ></Button>
+        ></div>
       </div>
-    </div>
+    </Col>
   );
 
   return (
     <Row className="mt-3">
       <Col md={12}>
-        <div className="d-flex justify-content-between align-content-center">
+        <div className="d-flex justify-content-between align-items-center mb-3">
           <p className="my-2">
             Top Rated {active === "movie" ? "Movies" : "TV Shows"}
           </p>
@@ -119,56 +103,46 @@ const TopRated = ({
           </div>
         </div>
 
-        {/* Display skeletons when loading */}
-        <div className="d-flex gap-3 overflow-hidden">
+        <Row>
           {loading
             ? Array.from({ length: 3 }).map((_, index) => (
                 <SkeletonLoader key={index} />
               ))
-            : data?.slice(currentIndex, currentIndex + 3)?.map(
-                (
-                  item: {
-                    title: string;
-                    name: string;
-                    poster_path: string;
-                  },
-                  index
-                ) => {
-                  return (
+            : data
+                ?.slice(currentIndex, currentIndex + 3)
+                ?.map((item, index) => (
+                  <Col
+                    key={index}
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                    className="mb-3"
+                    onClick={() => setSelected(item)}
+                  >
                     <div
-                      onClick={() => setSelected(item)}
-                      key={index}
-                      className="position-relative d-flex justify-content-center align-items-center"
+                      className="bg-dark rounded overflow-hidden"
                       style={{
-                        width: "300px",
-                        height: "150px",
-                        backgroundColor: "gray",
+                        height: "200px",
                         backgroundImage: `url(${makeImgUrl(
                           item?.poster_path,
                           "original"
                         )})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        transition: "transform 0.5s ease-in-out", // Smooth transition for swiper effect
+                        transition: "transform 0.5s ease-in-out",
                       }}
                     >
                       <div
-                        className="position-absolute   d-flex flex-column gap-2"
-                        style={{
-                          bottom: 0,
-                          left: "10px",
-                        }}
+                        className="position-absolute text-white d-flex flex-column"
+                        style={{ bottom: "10px", left: "10px" }}
                       >
-                        <p className="text-white">
-                          {item?.title || item?.name}{" "}
-                          <span className="text-secondary">(2018)</span>{" "}
-                        </p>
+                        <p className="mb-0">{item?.title || item?.name}</p>
+                        <span className="text-secondary">(2018)</span>
                       </div>
                     </div>
-                  );
-                }
-              )}
-        </div>
+                  </Col>
+                ))}
+        </Row>
       </Col>
     </Row>
   );
