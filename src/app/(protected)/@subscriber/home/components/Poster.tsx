@@ -3,6 +3,8 @@ import { makeImgUrl } from "@/utils";
 import React, { useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { SelectedContentTypes, SetSelectedContentTypes } from "../page";
+import AddButton from "@/components/ui/add-button";
+import WatchButton from "@/components/ui/watch-button";
 
 const Poster = ({
   active,
@@ -142,12 +144,28 @@ const Poster = ({
           }}
         >
           <div className="d-flex flex-column justify-content-center h-100 p-3">
-            <p className="text-muted">Season 10</p>
+            <p
+              style={{
+                fontSize: "12px",
+                fontWeight: "bold",
+                color: "#b7b7a4",
+              }}
+            >
+              Season 10
+            </p>
             <h4>{selected?.title || selected?.name}</h4>
-            <p className="text-muted">Action, Horror, Melody</p>
+            <p
+              style={{
+                fontSize: "12px",
+                fontWeight: "bold",
+                color: "#b7b7a4",
+              }}
+            >
+              Action, Horror, Melody
+            </p>
             <div className="d-flex gap-2">
-              <Button variant="danger">Watch Now</Button>
-              <Button variant="secondary">+</Button>
+              <WatchButton />
+              <AddButton />
             </div>
           </div>
         </Col>

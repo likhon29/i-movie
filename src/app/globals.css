@@ -1,7 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "@coreui/coreui/dist/css/coreui.min.css";
 
-
 .rate {
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
@@ -51,5 +50,14 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }

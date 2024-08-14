@@ -3,7 +3,7 @@ import { makeImgUrl } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { SetSelectedContentTypes } from "../page";
+import { SelectedContentTypes, SetSelectedContentTypes } from "../page";
 
 const TopRated = ({
   active,
@@ -110,17 +110,17 @@ const TopRated = ({
               ))
             : data
                 ?.slice(currentIndex, currentIndex + 3)
-                ?.map((item, index) => (
+                ?.map((item: SelectedContentTypes, index) => (
                   <Col
                     key={index}
                     xs={12}
                     sm={6}
                     lg={4}
-                    className="mb-3"
+                    className="position-relative mb-3"
                     onClick={() => setSelected(item)}
                   >
                     <div
-                      className="bg-dark rounded overflow-hidden"
+                      className=" bg-dark rounded overflow-hidden"
                       style={{
                         height: "200px",
                         backgroundImage: `url(${makeImgUrl(
@@ -134,10 +134,19 @@ const TopRated = ({
                     >
                       <div
                         className="position-absolute text-white d-flex flex-column"
-                        style={{ bottom: "10px", left: "10px" }}
+                        style={{ bottom: "10px", left: "30px" }}
                       >
                         <p className="mb-0">{item?.title || item?.name}</p>
-                        <span className="text-secondary">(2018)</span>
+                        <span
+                          className=""
+                          style={{
+                            fontSize: "12px",
+                            fontWeight: "bold",
+                            color: "#b7b7a4",
+                          }}
+                        >
+                          (2018)
+                        </span>
                       </div>
                     </div>
                   </Col>

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { SetSelectedContentTypes } from "../page";
+import AddButton from "@/components/ui/add-button";
+import WatchButton from "@/components/ui/watch-button";
 
 const NowPlaying = ({
   active,
@@ -161,26 +163,27 @@ const NowPlaying = ({
                           transition: "transform 0.5s ease-in-out",
                         }}
                       >
-                        <Button
-                          variant="secondary"
+                        <div
                           className="position-absolute"
                           style={{
                             top: 10,
                             right: 10,
                           }}
                         >
-                          +
-                        </Button>
+                          <AddButton />
+                        </div>
+
                         <div
-                          className="position-absolute w-100"
+                          className="position-absolute  w-100"
                           style={{
                             bottom: 10,
-                            padding: "0 10px",
+                            padding: "0 ",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            display: "flex",
                           }}
                         >
-                          <Button variant="danger" className="text-white w-100">
-                            WATCH NOW
-                          </Button>
+                          <WatchButton />
                         </div>
                       </div>
                     </Col>
@@ -195,17 +198,3 @@ const NowPlaying = ({
 
 export default NowPlaying;
 
-// CSS for shimmer animation (you can include this in a global stylesheet)
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = `
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-`;
-document.head.appendChild(styleSheet);
