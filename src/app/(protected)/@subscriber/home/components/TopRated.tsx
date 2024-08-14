@@ -1,5 +1,5 @@
 import { getPopularMovie, getPopularTvShow } from "@/api";
-import { makeImgUrl } from "@/utils";
+import { handleLoadDetails, makeImgUrl } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -117,7 +117,7 @@ const TopRated = ({
                     sm={6}
                     lg={4}
                     className="position-relative mb-3"
-                    onClick={() => setSelected(item)}
+                    onClick={() => handleLoadDetails(item, active, setSelected)}
                   >
                     <div
                       className=" bg-dark rounded overflow-hidden"

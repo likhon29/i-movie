@@ -13,6 +13,7 @@ export type SelectedContentTypes = {
   session?: string;
   title?: string;
   poster_path?: string;
+  backdrop_path?: string;
   name?: string;
   last_episode_to_air?: {
     episode_number: number;

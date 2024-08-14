@@ -43,7 +43,7 @@ const Poster = ({
     }
   }, [active, setSelected]);
 
-  const url = makeImgUrl(selected?.poster_path ?? "", "original");
+  const url = makeImgUrl(selected?.backdrop_path ?? "", "original");
 
   console.log(selected);
 
@@ -124,6 +124,7 @@ const Poster = ({
     <SkeletonLoader />
   ) : (
     <div
+      className=""
       style={{
         position: "relative",
         backgroundImage: `url(${url})`,
@@ -131,6 +132,7 @@ const Poster = ({
         backgroundPosition: "center",
         height: "300px",
         color: "white",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <Row className="h-100">
