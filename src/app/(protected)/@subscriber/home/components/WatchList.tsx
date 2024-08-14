@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { getPopularTvShow } from "@/api";
 import PopularCard from "./PopularCard";
+import { Button } from "react-bootstrap";
 
 const WatchList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showMore, setShowMore] = useState(false); // Track "See More" state
 
   useEffect(() => {
     getPopularTvShow()
@@ -75,17 +77,36 @@ const WatchList = () => {
           <SkeletonLoader />
         </>
       ) : (
-        data?.slice(0, 3)?.map(
-          (
-            item: {
-              title: any;
-              poster_path: string;
-            },
-            index: number
-          ) => {
-            return <PopularCard key={index} item={item} />;
-          }
-        )
+        <>
+          {data?.slice(0, showMore ? data.length : 3)?.map(
+            (
+              item: {
+                title: any;
+                poster_path: string;
+              },
+              index: number
+            ) => {
+              return <PopularCard key={index} item={item} />;
+            }
+          )}
+
+          {/* Show "See More" button if there are more than 3 items */}
+          {data.length > 3 && !showMore && (
+            <Button
+              className="w-100 text-uppercase text-danger "
+              onClick={() => setShowMore(true)}
+              style={{
+                height: "50px",
+                backgroundColor: "#FFD0D0",
+                border: "none",
+                // text bold
+                fontWeight: "bold",
+              }}
+            >
+              See More
+            </Button>
+          )}
+        </>
       )}
     </div>
   );

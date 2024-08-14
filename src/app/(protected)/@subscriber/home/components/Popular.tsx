@@ -3,10 +3,12 @@ import SearchBar from "./SearchBar";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { getPopularMovie, getPopularTvShow } from "@/api";
 import PopularCard from "./PopularCard";
+import { Button } from "react-bootstrap";
 
 const Popular = ({ active }: { active: string }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showMore, setShowMore] = useState(false); // Track the state of "See More"
 
   useEffect(() => {
     if (active === "movie") {
@@ -90,17 +92,36 @@ const Popular = ({ active }: { active: string }) => {
           <SkeletonLoader />
         </>
       ) : (
-        data?.slice(0, 2)?.map(
-          (
-            item: {
-              title: string;
-              poster_path: string;
-            },
-            index: number
-          ) => {
-            return <PopularCard key={index} item={item} />;
-          }
-        )
+        <>
+          {data?.slice(0, showMore ? data.length : 2)?.map(
+            (
+              item: {
+                title: string;
+                poster_path: string;
+              },
+              index: number
+            ) => {
+              return <PopularCard key={index} item={item} />;
+            }
+          )}
+
+          {/* Show "See More" button if there are more than 2 items */}
+          {data.length > 2 && !showMore && (
+            <Button
+              className="w-100 text-uppercase text-danger "
+              onClick={() => setShowMore(true)}
+              style={{
+                height: "50px",
+                backgroundColor: "#FFD0D0",
+                border: "none",
+                // text bold
+                fontWeight: "bold",
+              }}
+            >
+              See More
+            </Button>
+          )}
+        </>
       )}
     </div>
   );
