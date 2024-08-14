@@ -8,6 +8,7 @@ import TopRated from "./components/TopRated";
 import Popular from "./components/Popular";
 import WatchList from "./components/WatchList";
 import { SelectedContentTypes } from "@/types";
+import { CiMenuFries } from "react-icons/ci";
 
 const HomePage = () => {
   const [isMovie, setIsMovie] = useState(true);
@@ -34,27 +35,33 @@ const HomePage = () => {
                 className="px-4"
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
-                <div className="d-flex gap-4 ">
-                  <p
-                    className={`cursor-pointer${
-                      isMovie
-                        ? "text-black fw-semibold cursor-pointer "
-                        : "text-muted"
-                    } `}
-                    onClick={handleMovie}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Movie
-                  </p>
-                  <p
-                    className={`${
-                      isTvShow ? "text-black fw-semibold  " : "text-muted"
-                    } `}
-                    onClick={handleTvShow}
-                    style={{ cursor: "pointer" }}
-                  >
-                    TV Show
-                  </p>
+                <div className="d-flex justify-content-between align-content-center">
+                  <div className="d-flex gap-4 ">
+                    <p
+                      className={`cursor-pointer${
+                        isMovie
+                          ? "text-black fw-semibold cursor-pointer "
+                          : "text-muted"
+                      } `}
+                      onClick={handleMovie}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Movie
+                    </p>
+                    <p
+                      className={`${
+                        isTvShow ? "text-black fw-semibold  " : "text-muted"
+                      } `}
+                      onClick={handleTvShow}
+                      style={{ cursor: "pointer" }}
+                    >
+                      TV Show
+                    </p>
+                  </div>
+
+                  <div className="d-md-none">
+                    <CiMenuFries />
+                  </div>
                 </div>
 
                 <Poster
