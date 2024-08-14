@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { act, useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { getPopularMovie, getPopularTvShow } from "@/api";
+import {
+  getMovieDetails,
+  getPopularMovie,
+  getPopularTvShow,
+  getTvShowDetails,
+} from "@/api";
 import PopularCard from "./PopularCard";
 import { Button } from "react-bootstrap";
 import SeeMore from "@/components/ui/see-more-button";
+import { SelectedContentTypes } from "../page";
 
 const Popular = ({ active }: { active: string }) => {
   const [data, setData] = useState([]);
@@ -94,17 +100,16 @@ const Popular = ({ active }: { active: string }) => {
         </>
       ) : (
         <>
-          {data?.slice(0, showMore ? data.length : 2)?.map(
-            (
-              item: {
-                title: string;
-                poster_path: string;
-              },
-              index: number
-            ) => {
-              return <PopularCard key={index} item={item} />;
-            }
-          )}
+          {data
+            ?.slice(0, showMore ? data.length : 2)
+            ?.map(async (item: SelectedContentTypes, index: number) => {
+              const detailsInfo =
+                active === "movie"
+                  ? await getMovieDetails(item?.id)
+                  : await getTvShowDetails(item?.id);
+
+              return <PopularCard key={index} item={detailsInfo} />;
+            })}
 
           {/* Show "See More" button if there are more than 2 items */}
           {data.length > 2 && !showMore && (

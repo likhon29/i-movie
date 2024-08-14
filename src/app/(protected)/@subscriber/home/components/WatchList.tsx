@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { getPopularTvShow } from "@/api";
+import { getPopularTvShow, getTvShowDetails } from "@/api";
 import PopularCard from "./PopularCard";
 import { Button } from "react-bootstrap";
 import SeeMore from "@/components/ui/see-more-button";
+import { SelectedContentTypes } from "../page";
 
 const WatchList = () => {
   const [data, setData] = useState([]);
@@ -79,17 +80,12 @@ const WatchList = () => {
         </>
       ) : (
         <>
-          {data?.slice(0, showMore ? data.length : 3)?.map(
-            (
-              item: {
-                title: any;
-                poster_path: string;
-              },
-              index: number
-            ) => {
-              return <PopularCard key={index} item={item} />;
-            }
-          )}
+          {data
+            ?.slice(0, showMore ? data.length : 4)
+            ?.map(async (item: SelectedContentTypes, index: number) => {
+              const detailsInfo = await getTvShowDetails(item?.id);
+              return <PopularCard key={index} item={detailsInfo} />;
+            })}
 
           {/* Show "See More" button if there are more than 3 items */}
           {data.length > 3 && !showMore && (

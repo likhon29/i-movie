@@ -10,6 +10,7 @@ import Popular from "./components/Popular";
 import WatchList from "./components/WatchList";
 
 export type SelectedContentTypes = {
+  id?: any;
   session?: string;
   title?: string;
   poster_path?: string;

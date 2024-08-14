@@ -2,16 +2,10 @@ import { makeImgUrl } from "@/utils";
 import Image from "next/image";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { SelectedContentTypes } from "../page";
 
-const PopularCard = ({
-  item,
-}: {
-  item: {
-    title?: string;
-    poster_path: string;
-    name?: string;
-  };
-}) => {
+const PopularCard = ({ item }: { item: SelectedContentTypes }) => {
+  console.log(item);
   const title = item?.title || item?.name;
   return (
     <Row className="g-0" style={{ margin: 0 }}>
@@ -41,12 +35,14 @@ const PopularCard = ({
               }}
             >
               <p className="fw-semibold mb-0">
-                {title?.length && title.length > 14 ? title.slice(0, 14)  : title}
+                {title?.length && title.length > 14
+                  ? title.slice(0, 14)
+                  : title}
               </p>
               <p className="mb-0">PG-13</p>
             </div>
             <p className="text-muted mt-2 mb-2" style={{ fontSize: ".8rem" }}>
-              Action, Horror
+              {item?.genres?.map((genre) => genre.name).join(", ")}
             </p>
             <div className="rating d-flex">
               {/* Rating stars */}
