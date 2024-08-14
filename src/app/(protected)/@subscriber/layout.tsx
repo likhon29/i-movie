@@ -15,7 +15,7 @@ const SubscriberPageLayout = ({
         {/* Sidebar */}
         <Col
           md={2}
-          className="p-0 vh-100 position-fixed"
+          className="p-0 vh-100 position-fixed d-none d-md-block"
           style={{ top: 0, left: 0, zIndex: 1, overflowY: "auto" }}
         >
           <SiteNavigation navigation="subscriber" />

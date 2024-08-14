@@ -9,7 +9,6 @@ import Popular from "./components/Popular";
 import WatchList from "./components/WatchList";
 import { SelectedContentTypes } from "@/types";
 
-
 const HomePage = () => {
   const [isMovie, setIsMovie] = useState(true);
   const [isTvShow, setIsTvShow] = useState(false);
@@ -25,7 +24,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="py-3 px-5">
+    <div className="py-3 px-md-5">
       <Container fluid>
         <Row>
           <Col md={12}>
@@ -74,7 +73,7 @@ const HomePage = () => {
               </Col>
               <Col
                 md={3}
-                className="border-start ps-4 "
+                className="border-start ps-md-4 px-4 px-md-0"
                 style={{ paddingLeft: 0, paddingRight: 0 }}
               >
                 <SearchBar />
