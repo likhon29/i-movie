@@ -1,5 +1,5 @@
 import { getMovieDetails, getTvShowDetails } from "@/api";
-import { SetSelectedContentTypes } from "@/app/(protected)/@subscriber/home/page";
+import { SetSelectedContentTypes } from "@/types";
 import clsx from "clsx";
 
 export function cn(...inputs: any[]) {

@@ -1,9 +1,10 @@
 import { getPopularMovie, getPopularTvShow } from "@/api";
-import { handleLoadDetails, makeImgUrl } from "@/utils";
+import { SelectedContentTypes, SetSelectedContentTypes } from "@/types";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { SelectedContentTypes, SetSelectedContentTypes } from "../page";
+import TopRatedCard from "./TopRatedCard";
+import SwiperNavigator from "@/components/shared/swiper-navigator";
+import TopRatedCardSkeleton from "@/components/shared/skeleton/TopRatedCardSkeleton";
+import { Col, Row } from "react-bootstrap";
 
 const TopRated = ({
   active,
@@ -41,43 +42,6 @@ const TopRated = ({
     }
   }, [active]);
 
-  const handleNext = () => {
-    if (currentIndex + 3 < data.length) {
-      setCurrentIndex(currentIndex + 3);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentIndex - 3 >= 0) {
-      setCurrentIndex(currentIndex - 3);
-    }
-  };
-
-  const SkeletonLoader = () => (
-    <Col xs={12} sm={6} lg={4} className="mb-3">
-      <div
-        className="bg-light rounded"
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "#e0e0e0",
-          animation: "pulse 1.5s infinite",
-          position: "relative",
-        }}
-      >
-        <div
-          className="position-absolute w-100 h-100"
-          style={{
-            background:
-              "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
-            backgroundSize: "200% 100%",
-            animation: "loading 1.5s infinite",
-          }}
-        ></div>
-      </div>
-    </Col>
-  );
-
   return (
     <Row className="mt-3">
       <Col md={12}>
@@ -85,75 +49,28 @@ const TopRated = ({
           <p className="my-2">
             Top Rated {active === "movie" ? "Movies" : "TV Shows"}
           </p>
-          <div className="d-flex justify-content-center gap-1">
-            <Button
-              variant="light"
-              onClick={handlePrev}
-              disabled={currentIndex === 0 || loading}
-            >
-              <IoIosArrowBack />
-            </Button>
-            <Button
-              variant="light"
-              onClick={handleNext}
-              disabled={currentIndex + 3 >= data.length || loading}
-            >
-              <IoIosArrowForward />
-            </Button>
-          </div>
+          <SwiperNavigator
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            data={data}
+            loading={loading}
+          />
         </div>
 
         <Row>
           {loading
             ? Array.from({ length: 3 }).map((_, index) => (
-                <SkeletonLoader key={index} />
+                <TopRatedCardSkeleton key={index} />
               ))
             : data
                 ?.slice(currentIndex, currentIndex + 3)
                 ?.map((item: SelectedContentTypes, index) => (
-                  <Col
+                  <TopRatedCard
                     key={index}
-                    xs={12}
-                    sm={6}
-                    lg={4}
-                    className="position-relative mb-3"
-                    onClick={() => handleLoadDetails(item, active, setSelected)}
-                  >
-                    <div
-                      className=" bg-dark rounded overflow-hidden"
-                      style={{
-                        height: "200px",
-                        backgroundImage: `url(${makeImgUrl(
-                          item?.poster_path,
-                          "original"
-                        )})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        transition: "transform 0.5s ease-in-out",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <div
-                        className="position-absolute text-white d-flex flex-column"
-                        style={{ bottom: "10px", left: "30px" }}
-                      >
-                        <p className="mb-0">{item?.title || item?.name}</p>
-                        <span
-                          className=""
-                          style={{
-                            fontSize: "12px",
-                            fontWeight: "bold",
-                            color: "#b7b7a4",
-                          }}
-                        >
-                          (
-                          {item?.release_date?.split("-")[0] ||
-                            item?.first_air_date?.split("-")[0]}
-                          )
-                        </span>
-                      </div>
-                    </div>
-                  </Col>
+                    item={item}
+                    active={active}
+                    setSelected={setSelected}
+                  />
                 ))}
         </Row>
       </Col>

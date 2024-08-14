@@ -1,36 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import Poster from "./components/Poster";
 import SearchBar from "./components/SearchBar";
 import NowPlaying from "./components/NowPlaying";
 import TopRated from "./components/TopRated";
 import Popular from "./components/Popular";
 import WatchList from "./components/WatchList";
+import { SelectedContentTypes } from "@/types";
 
-export type SelectedContentTypes = {
-  id?: any;
-  session?: string;
-  title?: string;
-  poster_path?: string;
-  backdrop_path?: string;
-  name?: string;
-  last_episode_to_air?: {
-    episode_number: number;
-    name: string;
-    season_number: number;
-  } | null;
-  genres?: { id: number; name: string }[];
-  adult?: boolean;
-  release_date?: string;
-  first_air_date?: string;
-  vote_average?: number;
-};
-
-export type SetSelectedContentTypes = React.Dispatch<
-  React.SetStateAction<SelectedContentTypes>
->;
 
 const HomePage = () => {
   const [isMovie, setIsMovie] = useState(true);

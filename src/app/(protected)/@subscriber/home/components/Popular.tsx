@@ -1,17 +1,11 @@
 "use client";
-import React, { act, useEffect, useState } from "react";
-import SearchBar from "./SearchBar";
+import React, { useEffect, useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import {
-  getMovieDetails,
-  getPopularMovie,
-  getPopularTvShow,
-  getTvShowDetails,
-} from "@/api";
+import { getPopularMovie, getPopularTvShow } from "@/api";
 import PopularCard from "./PopularCard";
-import { Button } from "react-bootstrap";
 import SeeMore from "@/components/ui/see-more-button";
-import { SelectedContentTypes } from "../page";
+import { SelectedContentTypes } from "@/types";
+import PopularSkeletonLoader from "@/components/shared/skeleton/PopularSkeletonLoader";
 
 const Popular = ({ active }: { active: string }) => {
   const [data, setData] = useState([]);
@@ -43,47 +37,6 @@ const Popular = ({ active }: { active: string }) => {
     }
   }, [active]);
 
-  // Skeleton Loader component with animations
-  const SkeletonLoader = () => (
-    <div
-      className="d-flex gap-3 my-3"
-      style={{
-        height: "100px",
-        backgroundColor: "#e0e0e0",
-        animation: "pulse 2s infinite",
-        transition: "transform 0.5s ease-in-out",
-        borderRadius: "8px",
-      }}
-    >
-      <div
-        style={{
-          width: "60px",
-          backgroundColor: "#ccc",
-          borderRadius: "8px",
-        }}
-      />
-      <div className="d-flex flex-column justify-content-center">
-        <div
-          style={{
-            width: "150px",
-            height: "20px",
-            backgroundColor: "#ddd",
-            marginBottom: "8px",
-            borderRadius: "4px",
-          }}
-        />
-        <div
-          style={{
-            width: "100px",
-            height: "15px",
-            backgroundColor: "#ddd",
-            borderRadius: "4px",
-          }}
-        />
-      </div>
-    </div>
-  );
-
   return (
     <div>
       <div className="d-flex justify-content-between align-content-center mt-4 mb-2">
@@ -96,8 +49,8 @@ const Popular = ({ active }: { active: string }) => {
       {/* Display skeletons when loading */}
       {loading ? (
         <>
-          <SkeletonLoader />
-          <SkeletonLoader />
+          <PopularSkeletonLoader />
+          <PopularSkeletonLoader />
         </>
       ) : (
         <>

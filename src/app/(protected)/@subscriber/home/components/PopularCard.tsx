@@ -2,8 +2,9 @@ import { makeImgUrl } from "@/utils";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
-import { SelectedContentTypes } from "../page";
 import { getMovieDetails, getTvShowDetails } from "@/api";
+import { SelectedContentTypes } from "@/types";
+import Rating from "@/components/shared/ratings";
 
 const PopularCard = ({
   setLoading,
@@ -27,9 +28,6 @@ const PopularCard = ({
   }, [item]);
 
   const title = content?.title || content?.name;
-  const ratingOutOf5 = content?.vote_average && content?.vote_average / 2;
-
-  
 
   return (
     <Row className="g-0" style={{ margin: 0 }}>
@@ -68,29 +66,7 @@ const PopularCard = ({
             <p className="text-muted mt-2 mb-2" style={{ fontSize: ".8rem" }}>
               {content?.genres?.map((genre) => genre.name).join(", ")}
             </p>
-            <div className="rating d-flex">
-              {/* Dynamic Rating stars */}
-              {[4, 3, 2, 1].map((star) => (
-                <React.Fragment key={star}>
-                  <input
-                    type="radio"
-                    name="rating"
-                    value={star}
-                    id={`star-${star}`}
-                    checked={star === Math.ceil(ratingOutOf5 || 0)} // Mark the correct star
-                    readOnly
-                  />
-                  <label
-                    htmlFor={`star-${star}`}
-                    style={{
-                      color: star <= Math.ceil(ratingOutOf5 || 0) ? "" : "gray", // Highlight filled stars
-                    }}
-                  >
-                    ☆
-                  </label>
-                </React.Fragment>
-              ))}
-            </div>
+            <Rating content={content} />
           </div>
         </div>
       </Col>
